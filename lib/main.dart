@@ -78,7 +78,7 @@ class Balancete extends StatelessWidget {
             },
           );
         },
-        child: Icon(Icons.),
+        child: Icon(Icons.arrow_right),
       ),
     );
   }
