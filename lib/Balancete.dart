@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'TelaResultado.dart';
 import 'ColetaBox.dart';
 
-
 class Balancete extends StatelessWidget {
-
   var coletaConstrucao = ColetaBox("Construcao");
   var coletaPiedade = ColetaBox("Piedade");
   var coletaViagem = ColetaBox("Viagem");
@@ -13,8 +12,13 @@ class Balancete extends StatelessWidget {
   var campoTotalDepositado = ColetaBox("Total Depositado");
   var campoTotalDespesa = ColetaBox("Total de Despesas");
 
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  
   Widget build(BuildContext context) {
+
+
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Balancete'),
         centerTitle: true,
@@ -25,12 +29,22 @@ class Balancete extends StatelessWidget {
           Center(
             child: Column(
               children: <Widget>[
+                SizedBox(height: 20),
+                Text('Entradas',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    )),
                 coletaConstrucao,
                 coletaPiedade,
                 coletaViagem,
                 coletaManutencao,
                 coletaReuniao,
                 coletaEspecial,
+                SizedBox(height: 20),
+                Text('Saidas',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    )),
                 campoTotalDepositado,
                 campoTotalDespesa,
               ],
@@ -40,17 +54,18 @@ class Balancete extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          return showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                content: Text(''),
-              );
-            },
-          );
+          _navigateAndResultScreen(context);
         },
         child: Icon(Icons.arrow_right),
       ),
     );
+  }
+
+  _navigateAndResultScreen(BuildContext context) async {
+    final result = await Navigator.push(
+        context, MaterialPageRoute(builder: (context) => TelaResultado()));
+
+    Scaffold.of(context)
+      ..removeCurrentSnackBar();
   }
 }
