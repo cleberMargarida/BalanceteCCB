@@ -4,12 +4,20 @@ import 'ResultadoBox.dart';
 
 class TelaResultado extends StatelessWidget {
   @override
-  var _resultadoBoxTransferencia = ResultadoBox(3.25);
-  var _resultadoBoxDepositoDasColetas = ResultadoBox(2.4);
-  var _resultadoBoxTotalDepositado = ResultadoBox(3.5);
-  var _resultadoBoxComplementacao = ResultadoBox(3.8);
-  var _resultadoBoxDespesas = ResultadoBox(6.9);
-  var _resultadoBoxTotalGeral = ResultadoBox(0.5);
+  double _resultadoTransferencia;
+  double _resultadoDepositoDasColetas;
+  double _resultadoTotalDepositado;
+  double _resultadoComplementacao;
+  double _resultadoDespesas;
+  double _resultadoTotalGeral;
+
+  TelaResultado(
+      this._resultadoTransferencia,
+      this._resultadoDepositoDasColetas,
+      this._resultadoTotalDepositado,
+      this._resultadoComplementacao,
+      this._resultadoDespesas,
+      this._resultadoTotalGeral);
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,37 +36,37 @@ class TelaResultado extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16.0,
                     )),
-                _resultadoBoxTransferencia,
+                ResultadoBox(_resultadoTransferencia),
                 SizedBox(height: 10),
                 Text('Deposito das Coletas',
                     style: TextStyle(
                       fontSize: 16.0,
                     )),
-                _resultadoBoxDepositoDasColetas,
+                ResultadoBox(_resultadoTotalDepositado),
                 SizedBox(height: 10),
                 Text('Total Depositado',
                     style: TextStyle(
                       fontSize: 16.0,
                     )),
-                _resultadoBoxTotalDepositado,
+                ResultadoBox(_resultadoTotalDepositado),
                 SizedBox(height: 10),
                 Text('Complementacao',
                     style: TextStyle(
                       fontSize: 16.0,
                     )),
-                _resultadoBoxComplementacao,
+                ResultadoBox(_resultadoComplementacao),
                 SizedBox(height: 10),
                 Text('Despesas',
                     style: TextStyle(
                       fontSize: 16.0,
                     )),
-                _resultadoBoxDespesas,
+                ResultadoBox(_resultadoDespesas),
                 SizedBox(height: 10),
                 Text('Total Geral',
                     style: TextStyle(
                       fontSize: 16.0,
                     )),
-                _resultadoBoxTotalGeral,
+                ResultadoBox(_resultadoTotalGeral),
               ],
             ),
           ),

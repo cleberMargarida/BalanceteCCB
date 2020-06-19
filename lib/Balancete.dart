@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'TelaResultado.dart';
+import 'Calculo.dart';
 import 'ColetaBox.dart';
 
 class Balancete extends StatelessWidget {
@@ -12,11 +13,8 @@ class Balancete extends StatelessWidget {
   var _campoTotalDepositado = ColetaBox("Soma dos Depositos");
   var _campoTotalDespesa = ColetaBox("Soma das Despesas");
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Balancete'),
         centerTitle: true,
@@ -52,22 +50,42 @@ class Balancete extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          _navigateAndResultScreen(context);
           _coletaConstrucao.controller.clear();
           _coletaPiedade.controller.clear();
           _coletaViagem.controller.clear();
           _coletaManutencao.controller.clear();
           _coletaReuniao.controller.clear();
           _coletaEspecial.controller.clear();
-          _navigateAndResultScreen(context);
         },
         child: Icon(Icons.description),
       ),
     );
   }
 
+  Calculo calculo = Calculo(2, 2, 2, 2, 2, 2, 2, 2
+      // double.parse(_coletaConstrucao.controller.text),
+      // double.parse(_coletaPiedade.controller.text),
+      // double.parse(_coletaViagem.controller.text),
+      // double.parse(_coletaManutencao.controller.text),
+      // double.parse(_coletaReuniao.controller.text),
+      // double.parse(_coletaEspecial.controller.text),
+      // double.parse(_totalDepositado.controller.text),
+      // double.parse(_totalDespesa)
+      );
+
   _navigateAndResultScreen(BuildContext context) async {
     final result = await Navigator.push(
-        context, MaterialPageRoute(builder: (context) => TelaResultado()));
+        context,
+        MaterialPageRoute(
+            builder: (context) => TelaResultado(
+                  calculo.CalculaTransferencia(),
+                  calculo.DepositoDasColetas(),
+                  calculo.CalculaTotalDepositado(),
+                  calculo.CalculaComplementacao(),
+                  calculo.CalculaTotalDespesa(),
+                  calculo.CalculaTotalGeral(),
+                )));
 
     Scaffold.of(context)..removeCurrentSnackBar();
   }

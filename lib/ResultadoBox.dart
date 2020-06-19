@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ResultadoBox extends StatelessWidget {
-  num _some;
-  ResultadoBox(this._some);
+  num _valor;
+  ResultadoBox(this._valor);
 
   Widget build(BuildContext context) {
     return Padding(
@@ -12,7 +12,7 @@ class ResultadoBox extends StatelessWidget {
         decoration: InputDecoration(
           border: OutlineInputBorder(),
         ),
-        controller: TextEditingController(text: "R\$ ${_some.toString()}"),
+        controller: TextEditingController(text: "R\$ ${_valor.toString()}"),
       ),
     );
   }
