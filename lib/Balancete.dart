@@ -3,20 +3,18 @@ import 'TelaResultado.dart';
 import 'ColetaBox.dart';
 
 class Balancete extends StatelessWidget {
-  var coletaConstrucao = ColetaBox("Construcao");
-  var coletaPiedade = ColetaBox("Piedade");
-  var coletaViagem = ColetaBox("Viagem");
-  var coletaManutencao = ColetaBox("Manutencao");
-  var coletaReuniao = ColetaBox("Reuniao");
-  var coletaEspecial = ColetaBox("Especial");
-  var campoTotalDepositado = ColetaBox("Total Depositado");
-  var campoTotalDespesa = ColetaBox("Total de Despesas");
+  var _coletaConstrucao = ColetaBox("Construcao");
+  var _coletaPiedade = ColetaBox("Piedade");
+  var _coletaViagem = ColetaBox("Viagem");
+  var _coletaManutencao = ColetaBox("Manutencao");
+  var _coletaReuniao = ColetaBox("Reuniao");
+  var _coletaEspecial = ColetaBox("Especial");
+  var _campoTotalDepositado = ColetaBox("Soma dos Depositos");
+  var _campoTotalDespesa = ColetaBox("Soma das Despesas");
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  
+
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -34,19 +32,19 @@ class Balancete extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16.0,
                     )),
-                coletaConstrucao,
-                coletaPiedade,
-                coletaViagem,
-                coletaManutencao,
-                coletaReuniao,
-                coletaEspecial,
+                _coletaConstrucao,
+                _coletaPiedade,
+                _coletaViagem,
+                _coletaManutencao,
+                _coletaReuniao,
+                _coletaEspecial,
                 SizedBox(height: 20),
                 Text('Saidas',
                     style: TextStyle(
                       fontSize: 16.0,
                     )),
-                campoTotalDepositado,
-                campoTotalDespesa,
+                _campoTotalDepositado,
+                _campoTotalDespesa,
               ],
             ),
           ),
@@ -54,9 +52,15 @@ class Balancete extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          _coletaConstrucao.controller.clear();
+          _coletaPiedade.controller.clear();
+          _coletaViagem.controller.clear();
+          _coletaManutencao.controller.clear();
+          _coletaReuniao.controller.clear();
+          _coletaEspecial.controller.clear();
           _navigateAndResultScreen(context);
         },
-        child: Icon(Icons.arrow_right),
+        child: Icon(Icons.description),
       ),
     );
   }
@@ -65,7 +69,6 @@ class Balancete extends StatelessWidget {
     final result = await Navigator.push(
         context, MaterialPageRoute(builder: (context) => TelaResultado()));
 
-    Scaffold.of(context)
-      ..removeCurrentSnackBar();
+    Scaffold.of(context)..removeCurrentSnackBar();
   }
 }

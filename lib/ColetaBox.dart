@@ -1,15 +1,11 @@
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:flutter/material.dart';
 
-
 class ColetaBox extends StatelessWidget {
-  String coletaNome;
+  String _coletaNome;
+  ColetaBox(this._coletaNome);
 
-  ColetaBox(String coletaNome) {
-    this.coletaNome = coletaNome;
-  }
-
-  TextEditingController value = MoneyMaskedTextController(
+  TextEditingController controller = MoneyMaskedTextController(
       decimalSeparator: '.', thousandSeparator: ',', leftSymbol: 'R\$ ');
 
   Widget build(BuildContext context) {
@@ -19,9 +15,9 @@ class ColetaBox extends StatelessWidget {
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           border: OutlineInputBorder(),
-          labelText: coletaNome,
+          labelText: _coletaNome,
         ),
-        controller: value,
+        controller: controller,
       ),
     );
   }
