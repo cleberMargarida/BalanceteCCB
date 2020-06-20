@@ -1,4 +1,4 @@
-import 'package:Balancete/Balancete.dart';
+import 'Balancete.dart';
 import 'package:flutter/material.dart';
 import 'ResultadoBox.dart';
 
@@ -31,42 +31,36 @@ class TelaResultado extends StatelessWidget {
           Center(
             child: Column(
               children: <Widget>[
-                SizedBox(height: 10),
-                Text('Transferencia para ADM',
+                Text('Transferências',
                     style: TextStyle(
                       fontSize: 16.0,
                     )),
-                ResultadoBox(_resultadoTransferencia),
-                SizedBox(height: 10),
-                Text('Deposito das Coletas',
+                ResultadoBox(_resultadoTransferencia,"Transf. Administracao"),
+
+                SizedBox(height: 20),
+                Text('Depositos',
                     style: TextStyle(
                       fontSize: 16.0,
                     )),
-                ResultadoBox(_resultadoTotalDepositado),
-                SizedBox(height: 10),
-                Text('Total Depositado',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    )),
-                ResultadoBox(_resultadoTotalDepositado),
-                SizedBox(height: 10),
-                Text('Complementacao',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    )),
-                ResultadoBox(_resultadoComplementacao),
-                SizedBox(height: 10),
+                ResultadoBox(_resultadoTotalDepositado,"Deposito das Coletas"),
+
+                ResultadoBox(_resultadoTotalDepositado,'Total Depositado'),
+
+                ResultadoBox(_resultadoComplementacao,"Complementacao"),
+
+                SizedBox(height: 20),
                 Text('Despesas',
                     style: TextStyle(
                       fontSize: 16.0,
                     )),
-                ResultadoBox(_resultadoDespesas),
-                SizedBox(height: 10),
-                Text('Total Geral',
+                ResultadoBox(_resultadoDespesas, "Despesas"),
+                
+                SizedBox(height: 20),
+                Text('Total',
                     style: TextStyle(
                       fontSize: 16.0,
                     )),
-                ResultadoBox(_resultadoTotalGeral),
+                ResultadoBox(_resultadoTotalGeral,"Total Geral"),
               ],
             ),
           ),
@@ -74,17 +68,11 @@ class TelaResultado extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _navigateAndResultScreen(context);
+          Navigator.pop(
+              context, MaterialPageRoute(builder: (context) => Balancete()));
         },
         child: Icon(Icons.done),
       ),
     );
-  }
-
-  _navigateAndResultScreen(BuildContext context) async {
-    final result = await Navigator.push(
-        context, MaterialPageRoute(builder: (context) => Balancete()));
-
-    Scaffold.of(context)..removeCurrentSnackBar();
   }
 }
